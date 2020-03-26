@@ -1,43 +1,48 @@
 import React,{Component}from'react';
-class Tabela extends Component{
-    render(){
-        return(
-            <table>
-                <tread>
-                    <tr>
-                        <th>Autores</th>
-                        <th>Livros</th>
-                        <th>Preços</th>
-                        <th>Remover</th>
-                    </tr>
-                </tread>
-                <tbody>
-                    <tr>
-                        <td>Paulo</td>
-                        <td>React</td>
-                        <td>1000</td>
+
+
+    const TableHead = () =>{
+            return(
+            <tread>
+            <tr>
+                <th>Autores</th>
+                <th>Livros</th>
+                <th>Preços</th>
+                <th>Remover</th>
+            </tr>
+        </tread>
+            );
+        }
+
+        const TableBody = props =>{
+                const linhas = props.Autores.map((linha,index) => {
+                    return(
+                        <tr key={index}>
+                        <td>{linha.nome}</td>
+                        <td>{linha.livro}</td>
+                        <td>{linha.preço}</td>
                         <td><button>Remover</button></td>
-                    </tr>
-                    <tr>
-                        <td>Daniel</td>
-                        <td>Java</td>
-                        <td>99</td>
-                        <td><button>Remover</button></td>
-                    </tr>
-                    <tr>
-                        <td>Marcos</td>
-                        <td>Design</td>
-                        <td>150</td>
-                        <td><button>Remover</button></td>
-                    </tr>
-                    <tr>
-                        <td>Bruno</td>
-                        <td>DevOps</td>
-                        <td>100</td>
-                        <td><button>Remover</button></td>
-                    </tr>
-                </tbody>
-            </table>
+                        </tr>
+                        );
+                    });
+
+                    return(
+                        <tbody>
+                            {linhas}
+                        </tbody>
+                    )
+        }
+
+        class Tabela extends Component{
+            render(){
+                const {Autores} = this.props;
+
+                return(
+
+                    <table>
+                        <TableHead/>
+                        <TableBody Autores={Autores}/>
+                    </table>
         
         );
     }
